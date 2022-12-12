@@ -6,8 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/editdistance-{{ version }}.tar.gz
-  sha256: 124a3ebe1934ed86c0bdb5deafcc67494604a7cc63bdbb587665b76c85648262
+  url: https://github.com/roy-ht/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: bc58aac72b82bcc22f15d70423990a568c28fda32392fa0eeba66a288e7b5a19
   patches:
     # add python 3.11 compat patch: https://github.com/roy-ht/editdistance/commit/5c81574c1ea9538a4d9c97d1f9c28cc10d67980f
     - patches/0001-cythonize.patch
