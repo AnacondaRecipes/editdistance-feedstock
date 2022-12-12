@@ -1,14 +1,13 @@
 {% set name = "editdistance" %}
-{% set version = "0.5.3" %}
+{% set version = "0.6.1" %}
 
 package:
-  name: '{{ name|lower }}'
-  version: '{{ version }}'
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  fn: '{{ name }}-{{ version }}.tar.gz'
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  'sha256': '89d016dda04649b2c49e12b34337755a7b612bfd690420edd50ab31787120c1f'
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/editdistance-{{ version }}.tar.gz
+  sha256: 124a3ebe1934ed86c0bdb5deafcc67494604a7cc63bdbb587665b76c85648262
 
 build:
   number: 0
@@ -21,6 +20,8 @@ requirements:
   host:
     - python
     - pip
+    - setuptools
+    - wheel
   run:
     - python
 
@@ -31,17 +32,20 @@ test:
     - editdistance
   commands:
     - python test/test_editdistance.py
+    - pip check
+  requires:
+    - pip
 
 about:
-  home: https://www.github.com/aflc/editdistance
+  home: https://github.com/roy-ht/editdistance
   license: MIT
   license_family: MIT
-  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE'
-  summary: 'Fast implementation of the edit distance(Levenshtein distance)'
-  description: "Fast implementation of the edit distance(Levenshtein distance)"
-  doc_url: https://github.com/aflc/editdistance
-  dev_url: https://github.com/aflc/editdistance
+  license_file: LICENSE
+  summary: Fast implementation of the edit distance(Levenshtein distance)
+  description: Fast implementation of the edit distance(Levenshtein distance)
+  doc_url: https://github.com/roy-ht/editdistance
+  dev_url: https://github.com/roy-ht/editdistance
 
 extra:
   recipe-maintainers:
-    - nelson-liu
+    - cbouss
