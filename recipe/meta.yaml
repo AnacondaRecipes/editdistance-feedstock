@@ -1,5 +1,5 @@
 {% set name = "editdistance" %}
-{% set version = "0.6.1" %}
+{% set version = "0.8.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,27 +7,21 @@ package:
 
 source:
   url: https://github.com/roy-ht/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: bc58aac72b82bcc22f15d70423990a568c28fda32392fa0eeba66a288e7b5a19
-  patches:
-    # add python 3.11 compat patch: https://github.com/roy-ht/editdistance/commit/5c81574c1ea9538a4d9c97d1f9c28cc10d67980f
-    - patches/0001-cythonize.patch
+  sha256: 443674f20d469a724c4286906d8abd9e859a18b70ef1145b02acd26eb93ea661
 
 build:
-  number: 1
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
-  skip: True  # [py<36]
+  number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
+  skip: True  # [py<38]
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - patch  # [unix]
-    - m2-patch  # [win]
   host:
     - python
     - pip
-    - setuptools
-    - wheel
+    - pdm-backend
     - cython
   run:
     - python
